@@ -2,13 +2,13 @@ import { createStore } from "redux";
 
 // Note: 'createStore' is deprecated, it will be replaced by Redux toolkit
 
-const initialState = {
+const initialStateAccount = {
   balance: 0,
   loan: 0,
   loanPurpose: "",
 };
 
-function reducer(state = initialState, action) {
+function reducer(state = initialStateAccount, action) {
   switch (action.type) {
     case "account/deposit":
       return { ...state, balance: state.balance + action.payload };
