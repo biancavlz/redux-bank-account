@@ -1,5 +1,5 @@
 import { act } from "@testing-library/react";
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 // Note: 'createStore' is deprecated, it will be replaced by Redux toolkit
 
@@ -59,7 +59,12 @@ function customerReducer(state = initialStateCustomer, action) {
   }
 }
 
-const store = createStore(accountReducer);
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer,
+});
+
+const store = createStore(rootReducer);
 // store.dispatch({ type: "account/deposit", payload: 500 });
 // store.dispatch({ type: "account/withdraw", payload: 200 });
 // store.dispatch({
