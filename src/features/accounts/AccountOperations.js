@@ -28,6 +28,14 @@ function AccountOperations() {
     setWithdrawalAmount("");
   }
 
+  function handleRequestLoan() {
+    if (!loanAmount || !loanPurpose) return;
+
+    dispatch(requestLoan(loanAmount, loanPurpose));
+    setLoanAmount("");
+    setLoanPurpose("");
+  }
+
   return (
     <div>
       <h2>Your account operations</h2>
