@@ -9,8 +9,16 @@ function AccountOperations() {
   const [loanPurpose, setLoanPurpose] = useState("");
   const [currency, setCurrency] = useState("USD");
 
-  const account = useSelector((store) => store.account);
-  console.log(account);
+  // const account = useSelector((store) => store.account);
+  //  console.log(account);
+
+  const {
+    loan: currentLoan,
+    loanPurpose: currentLoanPurpose,
+    balance,
+  } = useSelector((store) => store.account);
+
+  // console.log(balance);
 
   const dispatch = useDispatch();
 
@@ -88,7 +96,9 @@ function AccountOperations() {
         </div>
 
         <div>
-          <span>Pay back $X</span>
+          <span>
+            Pay back ${currentLoan} ({currentLoanPurpose})
+          </span>
           <button onClick={handlePayLoan}>Pay loan</button>
         </div>
       </div>
