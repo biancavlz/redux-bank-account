@@ -33,9 +33,24 @@ export default function accountReducer(state = initialStateAccount, action) {
 }
 
 // Actions creators for Account
-export function deposit(amount) {
-  return { type: "account/deposit", payload: amount };
+export function deposit(amount, currency) {
+  if (currency === "USD") return { type: "account/deposit", payload: amount };
+
+  // THUNK MIDDLEWARE FUNCTION
+  return async function (dispatch, getState) {
+    // API call
+    const res = await fetch(
+      `https://api.frankfurter.dev/v1/latest?base=${currency}&symbols=USD`,
+    );
+
+    const data = await res.json();
+    const converted = data.rates["USD"] * amount;
+
+    // dispatch action
+    dispatch({ type: "account/deposit", payload: converted });
+  };
 }
+
 export function withdraw(amount) {
   return { type: "account/withdraw", payload: amount };
 }

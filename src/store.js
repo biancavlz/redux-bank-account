@@ -1,4 +1,4 @@
-import thunk from "redux-thunk";
+import { thunk } from "redux-thunk";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 
 import customerReducer from "./features/customers/customerSlice";
